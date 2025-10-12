@@ -1,0 +1,32 @@
+
+.button_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    font-size: calc(16rem / 16);
+    font-weight: bold;
+    padding: 15px 15px;
+    width: 100%;
+    max-width: calc(198rem / 16);
+    border: 0
+}
+
+.yellow {
+    background-color: var(--color_7);
+    border-bottom: 4px solid var(--color_9);
+}
+
+.yellow:hover {
+    background-color: var(--color_8);
+}
+
+.silver {
+    background-color: var(--color_3);
+    border-bottom: 4px solid var(--color_11);
+}
+
+.silver:hover {
+    background-color: var(--color_4);
+}

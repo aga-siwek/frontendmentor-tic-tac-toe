@@ -1,0 +1,42 @@
+:root {
+    --color_1: hsl(202, 32%, 15%);
+    --color_1_transparent: hsla(202, 32%, 15%, 0.4);
+    --color_2: hsl(199, 35%, 19%);
+    --color_3: hsl(198, 23%, 72%);
+    --color_4: hsl(197, 33%, 89%);
+    --color_5: hsl(178, 60%, 48%);
+    --color_6: hsl(178, 75%, 65%);
+    --color_7: hsl(39, 88%, 58%);
+    --color_8: hsl(39, 100%, 69%);
+    --color_9: hsl(38, 66%, 51%);
+    --color_10: hsl(177, 60%, 38%);
+    --color_11: hsl(202, 11%, 56%);
+    --color_12: hsl(203, 32%, 11%);
+}
+
+html {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto auto;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto auto;
+    background-color: var(--color_1);
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    position: relative;
+}
+
+root {
+    width: 100%;
+}

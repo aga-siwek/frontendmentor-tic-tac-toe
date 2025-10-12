@@ -1,0 +1,6 @@
+.main_board_conteiner {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: calc(20rem/16)
+}

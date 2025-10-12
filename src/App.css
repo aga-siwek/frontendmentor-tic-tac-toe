@@ -1,0 +1,11 @@
+#root {
+    width: 100%;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: calc(24rem/16);
+    width: 100%;
+}

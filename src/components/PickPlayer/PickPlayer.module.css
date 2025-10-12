@@ -1,0 +1,35 @@
+.pick_player_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: calc(32rem / 16)
+}
+
+.pick_player_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pick_player_buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: calc(16rem / 16)
+}
+
+@media (min-width: 768px) {
+    .pick_player_container {
+        width: calc(460rem / 16);
+        gap: calc(40rem / 16)
+    }
+
+    .pick_player_buttons {
+        gap: calc(20rem / 16)
+    }
+
+}
+
+@media (min-width: 1440px) {
+}
