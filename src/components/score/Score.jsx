@@ -2,7 +2,7 @@ import styles from "./Score.module.css"
 import {ReactSVG} from "react-svg";
 import xIcon from "../../assets/icon-x.svg"
 import oIcon from "../../assets/icon-o.svg"
-import Button from "../common/Button/ButtonSecondary.jsx"
+import Button from "../common/button/ButtonSecondary.jsx"
 import {useState, useEffect} from "react";
 
 function Score({firstPlayer, restartBoard, restartGame, cpuPlayerActive, roundResult}) {
