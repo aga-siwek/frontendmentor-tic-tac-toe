@@ -1,7 +1,7 @@
 import styles from "./PickPlayer.module.css"
 import Logo from "../common/logo/Logo.jsx"
 import PickSelect from "./PickSelect.jsx";
-import ButtonPrimary from "../common/Button/ButtonPrimary.jsx";
+import ButtonPrimary from "../common/button/ButtonPrimary.jsx";
 
 
 function PickPlayer({choosePlayer, firstPlayer, startGame}) {
