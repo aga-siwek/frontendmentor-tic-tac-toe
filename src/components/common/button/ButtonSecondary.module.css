@@ -10,7 +10,8 @@
     padding: 15px 15px;
     width: 100%;
     max-width: calc(198rem / 16);
-    border: 0
+    border: 0;
+    cursor: pointer;
 }
 
 .yellow {

@@ -1,6 +1,6 @@
 import styles from "./ButtonPrimary.module.css"
 
-function ButtonPrimary({text = "CLICK ME", color = "blue", clickFunction, arg = ""}) {
+function ButtonPrimary({text = "CLICK ME", color = "blue", onClick=null}) {
     const colorPicker = () => {
         return styles[color]
     }
@@ -9,7 +9,7 @@ function ButtonPrimary({text = "CLICK ME", color = "blue", clickFunction, arg = 
         <button className={`
         ${styles.button_container} 
         ${colorPicker()}`}
-                onClick={() => clickFunction(arg)}>
+                onClick={(e) => onClick(e)}>
             {text}
         </button>
     )

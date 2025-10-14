@@ -1,5 +1,5 @@
 import styles from "./MainBoard.module.css"
-import MainBoardFile from "./MainBoardFile.jsx";
+import MainBoardSquare from "./MainBoardSquare.jsx";
 
 function MainBoard({
                        firstPlayer,
@@ -27,7 +27,7 @@ function MainBoard({
     const showGameCells = () => {
         return board.map((row, rowIndex) =>
             row.map((column, columnIndex) => (
-                <MainBoardFile
+                <MainBoardSquare
                     key={`${rowIndex}.${columnIndex}`}
                     player={column}
                     isXTurn={isXTurn}

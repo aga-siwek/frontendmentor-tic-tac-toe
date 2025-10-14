@@ -7,29 +7,36 @@
     padding: calc(24rem / 16) calc(28rem / 16);
     border-bottom: 8px solid var(--color_12);
     border-radius: 10px;
+    cursor: pointer;
 }
 
-.highlight_x {
-    background: red;
-}
 
-.highlight_o {
-    background: red;
-}
 .unhighlight {}
 
 .icon_x_svg {
     width: calc(40rem / 16);
     height: calc(40rem / 16);
     fill: var(--color_6);
+
 }
 
 .icon_o_svg {
     width: calc(40rem / 16);
     height: calc(40rem / 16);
     fill: var(--color_7);
+
+}
+.highlight_x {
+    background: var(--color_5);
+    fill: var(--color_1);
+    transition: background 0.3s ease, fill 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
 }
 
+.highlight_o {
+    background: var(--color_7);
+    fill: var(--color_1);
+    transition: background 0.3s ease, fill 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
 .icon_x_outline_svg {
     width: calc(40rem / 16);
     height: calc(40rem / 16);

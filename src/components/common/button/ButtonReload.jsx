@@ -2,11 +2,11 @@ import styles from "./ButtonReload.module.css"
 import restartIcon from "../../../assets/icon-restart.svg"
 import {ReactSVG} from 'react-svg'
 
-function ButtonReload({click_function}) {
+function ButtonReload({onClick=null}) {
     return (
         <button
             className={styles.button_container}
-            onClick={click_function}>
+            onClick={(e) => onClick(e)}>
             <ReactSVG
                 src={restartIcon}
                 alt="restart Icon"

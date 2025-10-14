@@ -1,6 +1,6 @@
 import styles from "./GameHeader.module.css"
-import Logo from "../common/Logo/Logo.jsx";
-import ButtonReload from "../common/Button/ButtonReload.jsx";
+import Logo from "../common/logo/Logo.jsx";
+import ButtonReload from "../common/button/ButtonReload.jsx";
 import iconX from "../../assets/icon-x.svg"
 import iconO from "../../assets/icon-o.svg"
 import {ReactSVG} from "react-svg";
@@ -27,7 +27,7 @@ function GameHeader({isXTurn, restartBoard}) {
             </div>
             <ButtonReload
                 className={styles.header_button}
-                click_function={restartBoard}/>
+                onClick={()=>restartBoard()}/>
 
         </div>)
 }

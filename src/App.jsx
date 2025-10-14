@@ -1,19 +1,16 @@
 import './App.css'
 import {useState, useEffect} from 'react'
-import GameBoard from "./components/GameBoard/GameBoard.jsx";
-import PickPlayer from "./components/PickPlayer/PickPlayer.jsx";
-import Score from "./components/Score/Score.jsx";
+import GameBoard from "./components/game_board/GameBoard.jsx";
+import PickPlayer from "./components/pick_player/PickPlayer.jsx";
+import Score from "./components/score/Score.jsx";
 import {checkWhoWin} from "./utils/checkWhoWin.js";
 import {checkIsFullBoard} from "./utils/checkIsFullBoard.js";
 import {makeCpuMove} from "./utils/makeCpuMove.js";
 import {minMaxCpuMove} from "./utils/minMaxCpuMove.js";
 
 function App() {
-    debugger
-    const playerX = "x"
-    const playerO = "o"
 
-    const [firstPlayer, setFirstPlayer] = useState(playerO);
+    const [firstPlayer, setFirstPlayer] = useState("o");
     const [cpuPlayerActive, setCpuPlayerActive] = useState(false);
     const [isXTurn, setIsXTurn] = useState(true);
     const [board, setBoard] = useState(
@@ -24,43 +21,19 @@ function App() {
 
     const [winningCombination, setWinningCombination] = useState()
     const [winningPlayer, setWinningPlayer] = useState("")
-
     const [gameResult, setGameResult] = useState({
         "x": 0,
         "o": 0,
         "Ties": 0
     })
     const [gameOver, setGameOver] = useState(false);
-    const [start, setStart] = useState(false);
-    const restartBoard = () => {
-        setBoard([
-            [null, null, null],
-            [null, null, null],
-            [null, null, null]])
-        setIsXTurn((prevState) => true)
-        setGameOver((prevState) => false)
-        setWinningCombination(null)
-        setWinningPlayer("")
+    const [gameInProgress, setGameInProgress] = useState(false);
+    const [roundResult, setRoundResult] = useState(null);
 
-    }
-    const restartGame = () => {
-        restartBoard()
-        setGameResult({
-            "x": 0,
-            "o": 0,
-            "Ties": 0
-        })
-        setStart(false)
 
-    }
-    const playWithCpu = (boolResult) => {
-        setCpuPlayerActive(boolResult)
-        setStart(true);
-    }
-
-    const choosePlayer = (user) => {
-        setFirstPlayer(user)
-        return firstPlayer
+    const startGame = (playWithCpu) => {
+        setCpuPlayerActive(playWithCpu)
+        setGameInProgress(true);
     }
 
     const makeMove = (rowIndex, columnIndex, player) => {
@@ -72,26 +45,58 @@ function App() {
         setIsXTurn(!isXTurn)
     }
 
+    const choosePlayer = (user) => {
+        setFirstPlayer(user)
+        return firstPlayer
+    }
+
+    const restartBoard = () => {
+        setBoard([
+            [null, null, null],
+            [null, null, null],
+            [null, null, null]])
+        setIsXTurn(() => true)
+        setGameOver(() => false)
+        setWinningCombination(null)
+        setWinningPlayer("")
+        setRoundResult(null)
+    }
+
+    const restartGame = () => {
+        restartBoard()
+        setGameResult({
+            "x": 0,
+            "o": 0,
+            "Ties": 0
+        })
+        setGameInProgress(false)
+    }
+
     useEffect(() => {
-        debugger
-        const whoWinReturn = checkWhoWin(board);
-        const isFull = checkIsFullBoard(board)
+        const winData = checkWhoWin(board);
+        const isBoardFull = checkIsFullBoard(board)
 
-        if (whoWinReturn != null && !gameOver) {
-           const [winResult, winCells] = whoWinReturn
-            setWinningCombination(winCells)
-            setWinningPlayer(winResult)
-                setGameOver(true);
-            console.log("win result from app ue", winResult)
-            console.log("wincells from app ue", winCells)
-
-            setGameResult((prevGameResult) => ({...prevGameResult, [`${winResult}`]: prevGameResult[winResult] + 1}));
+        // if player won
+        if (winData != null && !gameOver) {
+            setWinningCombination(winData.winCells)
+            setWinningPlayer(winData.player)
+            setGameOver(true);
+            setGameResult((prevGameResult) => ({
+                ...prevGameResult,
+                [`${winData.player}`]: prevGameResult[winData.player] + 1
+            }));
+            setRoundResult(winData.player)
+            console.log("round result from ue win result", winData.player)
+            console.log("round result from ue", winData.player)
             return;
         }
+        //if nobody won
 
-        if (isFull && !gameOver) {
+        if (isBoardFull && !gameOver) {
             setGameOver(true);
             setGameResult((prevGameResult) => ({...prevGameResult, ["Ties"]: prevGameResult["Ties"] + 1}));
+            setRoundResult("tie")
+            console.log("round result from ue tie", roundResult)
             return;
         }
         if (cpuPlayerActive) {
@@ -100,7 +105,11 @@ function App() {
             if (!gameOver) {
                 if (isCpuMove) {
                     // const move = makeCpuMove(board, cpuPlayer)
-                    const move = minMaxCpuMove(board, cpuPlayer, firstPlayer, isXTurn)
+                    const move = minMaxCpuMove(
+                        board,
+                        cpuPlayer,
+                        firstPlayer,
+                    )
                     if (move === null) {
                         return
                     }
@@ -110,52 +119,43 @@ function App() {
                 }
             }
         }
-    }, [board, gameOver, isXTurn, cpuPlayerActive, winningCombination, winningPlayer])
-    console.log("winning combination from app", winningCombination)
-    console.log("winning player", winningPlayer)
+    }, [
+        board,
+        gameOver,
+        isXTurn,
+        cpuPlayerActive,
+        winningCombination,
+        winningPlayer,
+        roundResult])
 
     return (
         <>
             <div className="container">
-                {!start ? (
-                        <PickPlayer
-                            choosePlayer={choosePlayer}
-                            firstPlayer={firstPlayer}
-                            playWithCpu={playWithCpu}/>) :
-
-                    gameOver ? (
-                        <div>
-                            <GameBoard
-                                firstPlayer={firstPlayer}
-                                cpuPlayerActive={cpuPlayerActive}
-                                isXTurn={isXTurn}
-                                restartBoard={restartBoard}
-                                gameResult={gameResult}
-                                board={board}
-                                makeMove={makeMove}
-                                winCells = {winningCombination}
-                                winResult = {winningPlayer}
-                            />
-                            <Score
-                                firstPlayer={firstPlayer}
-                                board={board}
-                                restartBoard={restartBoard}
-                                restartGame={restartGame}
-                                cpuPlayerActive={cpuPlayerActive}
-                            />
-                        </div>) : (
-                        <GameBoard
-                            firstPlayer={firstPlayer}
-                            cpuPlayerActive={cpuPlayerActive}
-                            isXTurn={isXTurn}
-                            restartBoard={restartBoard}
-                            gameResult={gameResult}
-                            board={board}
-                            makeMove={makeMove}
-                            winCells = {winningCombination}
-                            winResult = {winningPlayer}
-                        />)
-                }
+                {!gameInProgress &&
+                    <PickPlayer
+                        choosePlayer={choosePlayer}
+                        firstPlayer={firstPlayer}
+                        startGame={startGame}/>}
+                {gameInProgress &&
+                    <GameBoard
+                        firstPlayer={firstPlayer}
+                        cpuPlayerActive={cpuPlayerActive}
+                        isXTurn={isXTurn}
+                        restartBoard={restartBoard}
+                        gameResult={gameResult}
+                        board={board}
+                        makeMove={makeMove}
+                        winCells={winningCombination}
+                        winResult={winningPlayer}
+                    />}
+                {gameOver && <Score
+                    firstPlayer={firstPlayer}
+                    restartBoard={restartBoard}
+                    restartGame={restartGame}
+                    cpuPlayerActive={cpuPlayerActive}
+                    winResult={winningPlayer}
+                    roundResult={roundResult}
+                />}
             </div>
         </>
     )

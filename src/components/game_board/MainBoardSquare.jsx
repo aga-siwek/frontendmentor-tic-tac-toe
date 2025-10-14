@@ -1,4 +1,4 @@
-import styles from "./MainBoardFile.module.css"
+import styles from "./MainBoardSquare.module.css"
 import iconX from "../../assets/icon-x.svg"
 import iconO from "../../assets/icon-o.svg"
 import iconX_outline from "../../assets/icon-x-outline.svg"
@@ -6,7 +6,7 @@ import iconO_outline from "../../assets/icon-o-outline.svg"
 
 import {ReactSVG} from "react-svg";
 
-function MainBoardFile({
+function MainBoardSquare({
                            player = null,
                            isXTurn,
                            rowIndex,
@@ -64,13 +64,13 @@ function MainBoardFile({
         if (player === "x") {
             return (
                 <div className={`${styles.main_board_file_conteiner} ${highlightCell()}`}>
-                    <ReactSVG src={iconX} className={styles.icon_x_svg}/>
+                    <ReactSVG src={iconX} className={`${styles.icon_x_svg} ${highlightCell()}`}/>
                 </div>)
         }
         if (player === "o") {
             return (
-                <div className={styles.main_board_file_conteiner}>
-                    <ReactSVG src={iconO} className={styles.icon_o_svg}/>
+                <div className={`${styles.main_board_file_conteiner} ${highlightCell()}`}>
+                    <ReactSVG src={iconO} className={`${styles.icon_o_svg} ${highlightCell()}`}/>
                 </div>)
         }
     }
@@ -78,4 +78,4 @@ function MainBoardFile({
     return (showCell())
 }
 
-export default MainBoardFile
+export default MainBoardSquare

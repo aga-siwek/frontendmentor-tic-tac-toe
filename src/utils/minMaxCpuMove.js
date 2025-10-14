@@ -2,7 +2,7 @@ import {checkIsFullBoard} from "./checkIsFullBoard.js";
 import {checkWhoWin} from "./checkWhoWin.js";
 
 
-export function minMaxCpuMove(board, cpuPlayer, firstPlayer, isXTurn) {
+export function minMaxCpuMove(board, cpuPlayer, firstPlayer) {
     let minMaxScores
     let cpuBoard = structuredClone(board)
     let bestScore = -Infinity;
@@ -27,15 +27,14 @@ export function minMaxCpuMove(board, cpuPlayer, firstPlayer, isXTurn) {
 
     const minMax = (someBoard, depth, isMaximizing) => {
         let minMaxBoard = structuredClone(someBoard)
-        const whoWinReturn = checkWhoWin(minMaxBoard)
-        let isFull = checkIsFullBoard(minMaxBoard)
+        const winData = checkWhoWin(minMaxBoard)
+        let isBoardFull = checkIsFullBoard(minMaxBoard)
         let score
 
-        if (whoWinReturn === null) {
-            if (isFull) {
+        if (winData === null) {
+            if (isBoardFull) {
                 return [minMaxScores["Tie"], depth]
             } else if (isMaximizing) {
-                debugger
                 let bestScore = -Infinity
                 for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
                     for (let colIndex = 0; colIndex < 3; colIndex++) {
@@ -64,8 +63,7 @@ export function minMaxCpuMove(board, cpuPlayer, firstPlayer, isXTurn) {
             }
 
         } else {
-            let [winResult, winCells] = whoWinReturn
-            return [minMaxScores[winResult], depth]
+            return [minMaxScores[winData.player], depth]
         }
     }
 
@@ -85,8 +83,6 @@ export function minMaxCpuMove(board, cpuPlayer, firstPlayer, isXTurn) {
 
     for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
         for (let colIndex = 0; colIndex < 3; colIndex++) {
-            debugger
-
             depth = 0
             if (cpuBoard[rowIndex][colIndex] === null) {
                 cpuBoard[rowIndex][colIndex] = cpuPlayer
@@ -104,18 +100,14 @@ export function minMaxCpuMove(board, cpuPlayer, firstPlayer, isXTurn) {
         }
     }
     for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
-        let whoWin
-        let winCells
         for (let colIndex = 0; colIndex < 3; colIndex++) {
             if (cpuBoard[rowIndex][colIndex] === null) {
                 cpuBoard[rowIndex][colIndex] = firstPlayer
-                const whoWinReturn = checkWhoWin(cpuBoard)
-                if (whoWinReturn !== null) {
-                    [whoWin, winCells] = whoWinReturn
-
-                    if (whoWin === firstPlayer && finalDepth !== 0) {
+                const winData = checkWhoWin(cpuBoard)
+                if (winData !== null) {
+                    if (winData.player === firstPlayer && finalDepth !== 0) {
                         bestMove = [rowIndex, colIndex]
-                        console.log("who win", winCells)
+                        console.log("who win", winData.winCells)
                     }
                 }
                 cpuBoard[rowIndex][colIndex] = null

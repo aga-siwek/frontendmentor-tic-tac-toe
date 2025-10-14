@@ -1,10 +1,10 @@
 import styles from "./PickPlayer.module.css"
-import Logo from "../common/Logo/Logo.jsx"
+import Logo from "../common/logo/Logo.jsx"
 import PickSelect from "./PickSelect.jsx";
 import ButtonPrimary from "../common/Button/ButtonPrimary.jsx";
 
 
-function PickPlayer({choosePlayer, firstPlayer, playWithCpu}) {
+function PickPlayer({choosePlayer, firstPlayer, startGame}) {
     return (
         <div className={styles.pick_player_container}>
             <div className={styles.pick_player_header}>
@@ -17,13 +17,13 @@ function PickPlayer({choosePlayer, firstPlayer, playWithCpu}) {
             <div className={styles.pick_player_buttons}>
                 <ButtonPrimary text="NEW GAME (VS CPU)"
                                color="yellow"
-                               clickFunction={playWithCpu}
-                               arg={true}/>
+                               onClick={() => startGame(true)}
+                             />
                 <ButtonPrimary
                     text="NEW GAME  (VS PLAYER)"
                     color="blue"
-                    clickFunction={playWithCpu}
-                    arg={false}/>
+                    onClick={() => startGame(false)}
+                />
             </div>
         </div>)
 }

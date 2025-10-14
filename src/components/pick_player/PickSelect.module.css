@@ -39,6 +39,7 @@
     padding: calc(9rem / 16);
     border-radius: 10px;
 
+
 }
 
 .body_text {
@@ -56,6 +57,9 @@
     width: 100%;
     padding: calc(11rem / 16);
     border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.9s ease;
+
 }
 
 .select_container_o {
@@ -66,7 +70,11 @@
     width: 100%;
     padding: calc(11rem / 16);
     border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.9s ease;
 }
+
+
 
 .icon {
     width: calc(32rem / 16);

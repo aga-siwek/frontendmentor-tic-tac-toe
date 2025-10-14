@@ -1,13 +1,13 @@
 import styles from "./ButtonSecondary.module.css"
 
-function ButtonSecondary({text = "CLICK ME", color = "silver", clickFunction}) {
+function ButtonSecondary({text = "CLICK ME", color = "silver", onClick=null}) {
     const colorPicker = () => {
         return styles[color]
     }
     return (
         <button
             className={`${styles.button_container} ${colorPicker()}`}
-            onClick={() => clickFunction()}>
+            onClick={(e) => onClick(e)}>
             {text}
         </button>)
 }
