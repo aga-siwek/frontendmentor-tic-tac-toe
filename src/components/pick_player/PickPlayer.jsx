@@ -3,7 +3,6 @@ import Logo from "../common/logo/Logo.jsx"
 import PickSelect from "./PickSelect.jsx";
 import ButtonPrimary from "../common/button/ButtonPrimary.jsx";
 
-
 function PickPlayer({choosePlayer, firstPlayer, startGame}) {
     return (
         <div className={styles.pick_player_container}>

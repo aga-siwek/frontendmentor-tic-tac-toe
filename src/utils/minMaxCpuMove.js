@@ -1,7 +1,6 @@
 import {checkIsFullBoard} from "./checkIsFullBoard.js";
 import {checkWhoWin} from "./checkWhoWin.js";
 
-
 export function minMaxCpuMove(board, cpuPlayer, firstPlayer) {
     let minMaxScores
     let cpuBoard = structuredClone(board)
@@ -87,8 +86,6 @@ export function minMaxCpuMove(board, cpuPlayer, firstPlayer) {
             if (cpuBoard[rowIndex][colIndex] === null) {
                 cpuBoard[rowIndex][colIndex] = cpuPlayer
                 ;[score, depth] = minMax(cpuBoard, depth, false)
-                console.log("row, col", rowIndex, colIndex)
-                console.log("score, depth", score, depth)
                 cpuBoard[rowIndex][colIndex] = null
 
                 if (score > bestScore) {
@@ -107,13 +104,11 @@ export function minMaxCpuMove(board, cpuPlayer, firstPlayer) {
                 if (winData !== null) {
                     if (winData.player === firstPlayer && finalDepth !== 0) {
                         bestMove = [rowIndex, colIndex]
-                        console.log("who win", winData.winCells)
                     }
                 }
                 cpuBoard[rowIndex][colIndex] = null
             }
         }
     }
-    console.log("bestMove, depth, best score", bestMove, depth, bestScore)
     return bestMove;
 }

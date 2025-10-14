@@ -6,25 +6,19 @@ import {ReactSVG} from 'react-svg'
 function PickSelect({choosePlayer, firstPlayer}) {
 
     const playerStyleX = () => {
-        console.log("firstPlayer", firstPlayer)
         if (firstPlayer === "x") {
-            console.log("x is active")
             return styles.active_file
         }
         if (firstPlayer === "o") {
-            console.log("o is active")
             return styles.inactive_file
         }
     }
 
     const playerStyleO = () => {
-        console.log("firstPlayer", firstPlayer)
         if (firstPlayer === "o") {
-            console.log("x is active")
             return styles.active_file
         }
         if (firstPlayer === "x") {
-            console.log("o is active")
             return styles.inactive_file
         }
     }

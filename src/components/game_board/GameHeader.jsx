@@ -19,8 +19,7 @@ function GameHeader({isXTurn, restartBoard}) {
                                 className={styles.header_turn_icon_svg}/>)
                             : (<ReactSVG
                                 src={iconO}
-                                className={styles.header_turn_icon_svg}/>)
-                        }
+                                className={styles.header_turn_icon_svg}/>)}
                     </div>
                     <div className={styles.header_turn_text}>TURN</div>
                 </div>
@@ -28,7 +27,6 @@ function GameHeader({isXTurn, restartBoard}) {
             <ButtonReload
                 className={styles.header_button}
                 onClick={()=>restartBoard()}/>
-
         </div>)
 }
 

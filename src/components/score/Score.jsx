@@ -8,7 +8,6 @@ import {useState, useEffect} from "react";
 function Score({firstPlayer, restartBoard, restartGame, cpuPlayerActive, roundResult}) {
     const [visiable, setVisiable] = useState(false);
     const showContent = () => {
-        console.log("round result form score", roundResult)
         return (
             <div className={styles.score_background}>
                 {cpuPlayerActive ? (
@@ -23,7 +22,7 @@ function Score({firstPlayer, restartBoard, restartGame, cpuPlayerActive, roundRe
                                         </div>
                                         <div className={styles.restart_buttons_cpu_ties}>
                                             <div className={styles.restart_button_one_cpu_ties}>
-                                                <Button text="NO, CANCEL" color="silver" onClick={() => restartGame()} />
+                                                <Button text="NO, CANCEL" color="silver" onClick={() => restartGame()}/>
                                             </div>
                                             <div className={styles.restart_button_two_cpu_ties}>
                                                 <Button text="YES, RESTART" color="yellow" onClick={() => restartBoard()}/>
@@ -73,7 +72,8 @@ function Score({firstPlayer, restartBoard, restartGame, cpuPlayerActive, roundRe
                                                 <Button text="QUIT" color="silver" onClick={() => restartGame()}/>
                                             </div>
                                             <div className={styles.restart_button_two}>
-                                                <Button text="NEXT ROUND" color="yellow" onClick={() => restartBoard()}/>
+                                                <Button text="NEXT ROUND" color="yellow"
+                                                        onClick={() => restartBoard()}/>
                                             </div>
                                         </div>
                                     </div>

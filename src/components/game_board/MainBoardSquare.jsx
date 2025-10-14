@@ -7,30 +7,22 @@ import iconO_outline from "../../assets/icon-o-outline.svg"
 import {ReactSVG} from "react-svg";
 
 function MainBoardSquare({
-                           player = null,
-                           isXTurn,
-                           rowIndex,
-                           columnIndex,
-                           makeMove,
-                           isWinCell,
-                           winResult
-                       }) {
+                             player = null,
+                             isXTurn,
+                             rowIndex,
+                             columnIndex,
+                             makeMove,
+                             isWinCell,
+                             winResult
+                         }) {
 
     const highlightCell = () => {
-        console.log("isWinCell:", isWinCell, rowIndex, columnIndex, winResult);
-        console.log("winResult:", winResult);
 
         if (isWinCell && winResult === "o") {
-            console.log("returning styles.highlight_o ->", styles.highlight_o);
-            console.log("rowIndex, colindex:", rowIndex, columnIndex);
             return styles.highlight_o;
         } else if (isWinCell && winResult === "x") {
-            console.log("returning styles.highlight_x ->", styles.highlight_x);
-            console.log("rowIndex, colindex:", rowIndex, columnIndex);
             return styles.highlight_x;
         } else {
-            console.log("returning styles.unhighlight ->", styles.unhighlight);
-            console.log("rowIndex, colindex:", rowIndex, columnIndex);
             return styles.unhighlight;
         }
     };
@@ -74,7 +66,6 @@ function MainBoardSquare({
                 </div>)
         }
     }
-
     return (showCell())
 }
 

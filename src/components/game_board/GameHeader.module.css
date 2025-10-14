@@ -24,7 +24,6 @@
     border-radius: 10px;
     gap: calc(13rem / 16);
     border-bottom: 4px solid var(--color_12);
-
 }
 
 .header_turn_text {
@@ -62,8 +61,4 @@
     .header_turn_text {
         font-size: calc(16rem / 16);
     }
-
-}
-
-@media (min-width: 1440px) {
 }

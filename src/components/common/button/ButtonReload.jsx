@@ -11,7 +11,6 @@ function ButtonReload({onClick=null}) {
                 src={restartIcon}
                 alt="restart Icon"
                 className={styles.button_icon}/>
-
         </button>)
 }
 

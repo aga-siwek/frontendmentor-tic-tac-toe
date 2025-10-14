@@ -30,7 +30,6 @@ function App() {
     const [gameInProgress, setGameInProgress] = useState(false);
     const [roundResult, setRoundResult] = useState(null);
 
-
     const startGame = (playWithCpu) => {
         setCpuPlayerActive(playWithCpu)
         setGameInProgress(true);
@@ -86,8 +85,6 @@ function App() {
                 [`${winData.player}`]: prevGameResult[winData.player] + 1
             }));
             setRoundResult(winData.player)
-            console.log("round result from ue win result", winData.player)
-            console.log("round result from ue", winData.player)
             return;
         }
         //if nobody won
@@ -96,7 +93,6 @@ function App() {
             setGameOver(true);
             setGameResult((prevGameResult) => ({...prevGameResult, ["Ties"]: prevGameResult["Ties"] + 1}));
             setRoundResult("tie")
-            console.log("round result from ue tie", roundResult)
             return;
         }
         if (cpuPlayerActive) {
