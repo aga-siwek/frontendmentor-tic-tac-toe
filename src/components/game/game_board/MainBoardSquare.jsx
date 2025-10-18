@@ -1,8 +1,8 @@
 import styles from "./MainBoardSquare.module.css"
-import iconX from "../../assets/icon-x.svg"
-import iconO from "../../assets/icon-o.svg"
-import iconX_outline from "../../assets/icon-x-outline.svg"
-import iconO_outline from "../../assets/icon-o-outline.svg"
+import iconX from "../../../assets/icon-x.svg"
+import iconO from "../../../assets/icon-o.svg"
+import iconX_outline from "../../../assets/icon-x-outline.svg"
+import iconO_outline from "../../../assets/icon-o-outline.svg"
 
 import {ReactSVG} from "react-svg";
 
