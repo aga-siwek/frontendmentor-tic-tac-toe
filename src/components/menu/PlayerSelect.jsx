@@ -1,9 +1,9 @@
-import styles from "./PickSelect.module.css"
+import styles from "./PlayerSelect.module.css"
 import xIcon from "../../assets/icon-x.svg"
 import oIcon from "../../assets/icon-o.svg"
 import {ReactSVG} from 'react-svg'
 
-function PickSelect({choosePlayer, firstPlayer}) {
+function PlayerSelect({choosePlayer, firstPlayer}) {
 
     const playerStyleX = () => {
         if (firstPlayer === "x") {
@@ -45,4 +45,4 @@ function PickSelect({choosePlayer, firstPlayer}) {
     )
 }
 
-export default PickSelect
+export default PlayerSelect

@@ -1,153 +1,68 @@
 import './App.css'
-import {useState, useEffect} from 'react'
 import GameBoard from "./components/game_board/GameBoard.jsx";
-import PickPlayer from "./components/pick_player/PickPlayer.jsx";
+import Menu from "./components/menu/Menu.jsx";
 import Score from "./components/score/Score.jsx";
-import {checkWhoWin} from "./utils/checkWhoWin.js";
-import {checkIsFullBoard} from "./utils/checkIsFullBoard.js";
-import {makeCpuMove} from "./utils/makeCpuMove.js";
-import {minMaxCpuMove} from "./utils/minMaxCpuMove.js";
+import {useDispatch, useSelector} from "react-redux";
+import {setFirstPlayer, startGame, restartGame, makeMove, newRound} from "./store/gameSlice.js";
 
 function App() {
+    const dispatch = useDispatch()
+    const firstPlayer = useSelector((state) => state.game.firstPlayer)
+    const cpuPlayerActive = useSelector((state) => state.game.cpuPlayerActive)
+    const gameInProgress = useSelector((state) => state.game.gameInProgress)
+    const isXTurn = useSelector((state) => state.game.isXTurn)
+    const board = useSelector((state) => state.game.board)
+    const winningCombination = useSelector((state) => state.game.winningCombination)
+    const winningPlayer = useSelector((state) => state.game.winningPlayer)
+    const gameResult = useSelector((state) => state.game.gameResult)
+    const gameOver = useSelector((state) => state.game.gameOver)
+    const roundResult = useSelector((state) => state.game.roundResult)
 
-    const [firstPlayer, setFirstPlayer] = useState("o");
-    const [cpuPlayerActive, setCpuPlayerActive] = useState(false);
-    const [isXTurn, setIsXTurn] = useState(true);
-    const [board, setBoard] = useState(
-        [
-            [null, null, null],
-            [null, null, null],
-            [null, null, null]])
 
-    const [winningCombination, setWinningCombination] = useState()
-    const [winningPlayer, setWinningPlayer] = useState("")
-    const [gameResult, setGameResult] = useState({
-        "x": 0,
-        "o": 0,
-        "Ties": 0
-    })
-    const [gameOver, setGameOver] = useState(false);
-    const [gameInProgress, setGameInProgress] = useState(false);
-    const [roundResult, setRoundResult] = useState(null);
-
-    const startGame = (playWithCpu) => {
-        setCpuPlayerActive(playWithCpu)
-        setGameInProgress(true);
+    const onStartGame = (playWithCpu) => {
+        dispatch(startGame(playWithCpu))
     }
 
-    const makeMove = (rowIndex, columnIndex, player) => {
-        setBoard(prev => {
-            const newBoard = prev.map(row => [...row]);
-            newBoard[rowIndex][columnIndex] = player;
-            return newBoard;
-        })
-        setIsXTurn(!isXTurn)
+    const onMakeMove = (rowIndex, columnIndex, player) => {
+        dispatch(makeMove({rowIndex: rowIndex, columnIndex: columnIndex, player: player}))
     }
 
-    const choosePlayer = (user) => {
-        setFirstPlayer(user)
-        return firstPlayer
+    const onChoosePlayer = (user) => {
+        dispatch(setFirstPlayer(user));
     }
 
-    const restartBoard = () => {
-        setBoard([
-            [null, null, null],
-            [null, null, null],
-            [null, null, null]])
-        setIsXTurn(() => true)
-        setGameOver(() => false)
-        setWinningCombination(null)
-        setWinningPlayer("")
-        setRoundResult(null)
+    const onNewRound = () => {
+        dispatch(newRound())
     }
 
-    const restartGame = () => {
-        restartBoard()
-        setGameResult({
-            "x": 0,
-            "o": 0,
-            "Ties": 0
-        })
-        setGameInProgress(false)
+    const onRestartGame = () => {
+        dispatch(restartGame())
     }
-
-    useEffect(() => {
-        const winData = checkWhoWin(board);
-        const isBoardFull = checkIsFullBoard(board)
-
-        // if player won
-        if (winData != null && !gameOver) {
-            setWinningCombination(winData.winCells)
-            setWinningPlayer(winData.player)
-            setGameOver(true);
-            setGameResult((prevGameResult) => ({
-                ...prevGameResult,
-                [`${winData.player}`]: prevGameResult[winData.player] + 1
-            }));
-            setRoundResult(winData.player)
-            return;
-        }
-        //if nobody won
-
-        if (isBoardFull && !gameOver) {
-            setGameOver(true);
-            setGameResult((prevGameResult) => ({...prevGameResult, ["Ties"]: prevGameResult["Ties"] + 1}));
-            setRoundResult("tie")
-            return;
-        }
-        if (cpuPlayerActive) {
-            const cpuPlayer = firstPlayer === "o" ? "x" : "o";
-            const isCpuMove = (firstPlayer === "o" && isXTurn) || (firstPlayer === "x" && !isXTurn)
-            if (!gameOver) {
-                if (isCpuMove) {
-                    // const move = makeCpuMove(board, cpuPlayer)
-                    const move = minMaxCpuMove(
-                        board,
-                        cpuPlayer,
-                        firstPlayer,
-                    )
-                    if (move === null) {
-                        return
-                    }
-                    const [rowIndex, colIndex] = move
-                    makeMove(rowIndex, colIndex, cpuPlayer)
-                    setIsXTurn(!isXTurn)
-                }
-            }
-        }
-    }, [
-        board,
-        gameOver,
-        isXTurn,
-        cpuPlayerActive,
-        winningCombination,
-        winningPlayer,
-        roundResult])
 
     return (
         <>
             <div className="container">
                 {!gameInProgress &&
-                    <PickPlayer
-                        choosePlayer={choosePlayer}
+                    <Menu
+                        choosePlayer={onChoosePlayer}
                         firstPlayer={firstPlayer}
-                        startGame={startGame}/>}
+                        startGame={onStartGame}/>}
                 {gameInProgress &&
                     <GameBoard
                         firstPlayer={firstPlayer}
                         cpuPlayerActive={cpuPlayerActive}
                         isXTurn={isXTurn}
-                        restartBoard={restartBoard}
+                        restartBoard={onRestartGame}
                         gameResult={gameResult}
                         board={board}
-                        makeMove={makeMove}
+                        makeMove={onMakeMove}
                         winCells={winningCombination}
                         winResult={winningPlayer}
                     />}
                 {gameOver && <Score
                     firstPlayer={firstPlayer}
-                    restartBoard={restartBoard}
-                    restartGame={restartGame}
+                    restartBoard={onNewRound}
+                    restartGame={onRestartGame}
                     cpuPlayerActive={cpuPlayerActive}
                     winResult={winningPlayer}
                     roundResult={roundResult}

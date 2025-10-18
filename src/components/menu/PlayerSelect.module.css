@@ -38,8 +38,6 @@
     width: 100%;
     padding: calc(9rem / 16);
     border-radius: 10px;
-
-
 }
 
 .body_text {
@@ -58,7 +56,6 @@
     padding: calc(11rem / 16);
     border-radius: 10px;
     cursor: pointer;
-    transition: all 0.9s ease;
 }
 
 .select_container_o {
@@ -70,16 +67,12 @@
     padding: calc(11rem / 16);
     border-radius: 10px;
     cursor: pointer;
-    transition: all 0.9s ease;
 }
-
-
 
 .icon {
     width: calc(32rem / 16);
     height: calc(32rem / 16);
 }
-
 
 .active_file {
     background-color: var(--color_3);
