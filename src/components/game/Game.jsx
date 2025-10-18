@@ -5,14 +5,7 @@ import {GAME_STATE, makeMove, newRound, restartGame} from "../../store/gameSlice
 
 function Game () {
     const dispatch = useDispatch()
-    const gameState = useSelector((state) => state.game.gameState)
-    const firstPlayer = useSelector((state) => state.game.firstPlayer)
-    const cpuPlayerActive = useSelector((state) => state.game.cpuPlayerActive)
-    const isXTurn = useSelector((state) => state.game.isXTurn)
-    const board = useSelector((state) => state.game.board)
-    const winningCombination = useSelector((state) => state.game.winningCombination)
-    const gameResult = useSelector((state) => state.game.gameResult)
-    const roundResult = useSelector((state) => state.game.roundResult)
+    const state = useSelector((state) => state.game)
 
     const onMakeMove = (rowIndex, columnIndex, player) => {
         dispatch(makeMove({rowIndex: rowIndex, columnIndex: columnIndex, player: player}))
@@ -29,22 +22,22 @@ function Game () {
     return (
         <div>
             <GameBoard
-                firstPlayer={firstPlayer}
-                cpuPlayerActive={cpuPlayerActive}
-                isXTurn={isXTurn}
+                firstPlayer={state.firstPlayer}
+                cpuPlayerActive={state.cpuPlayerActive}
+                isXTurn={state.isXTurn}
                 restartBoard={onRestartGame}
-                gameResult={gameResult}
-                board={board}
+                gameResult={state.gameResult}
+                board={state.board}
                 makeMove={onMakeMove}
-                winCells={winningCombination}
-                winResult={roundResult}
+                winCells={state.winningCombination}
+                winResult={state.roundResult}
             />
-            {gameState === GAME_STATE.ROUND_SUMMARY && <Score
-                firstPlayer={firstPlayer}
+            {state.gameState === GAME_STATE.ROUND_SUMMARY && <Score
+                firstPlayer={state.firstPlayer}
                 restartBoard={onNewRound}
                 restartGame={onRestartGame}
-                cpuPlayerActive={cpuPlayerActive}
-                roundResult={roundResult}
+                cpuPlayerActive={state.cpuPlayerActive}
+                roundResult={state.roundResult}
             />}
         </div>
     )
