@@ -1,196 +1,219 @@
 .score_background {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--color_1_transparent);
-    position: fixed;
-    top: 0;
-    right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color_1_transparent);
+  position: fixed;
+  top: 0;
+  right: 0;
 }
 
 .conteiner_score {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: calc(16rem / 16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(16rem / 16);
 
-    background-color: var(--color_2);
-    width: 100%;
-    height: calc(228rem / 16);
-    padding: calc(40rem / 16);
+  background-color: var(--color_2);
+  width: 100%;
+  height: calc(228rem / 16);
+  padding: calc(40rem / 16);
 }
 
 .who_won {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: calc(16rem / 16);
-    width: 100%
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(16rem / 16);
+  width: 100%;
 }
 
 .body_text {
-    font-size: calc(14rem / 16);
-    font-weight: bold;
-    color: var(--color_3);
-    letter-spacing: 0.88px;
+  font-size: calc(14rem / 16);
+  font-weight: bold;
+  color: var(--color_3);
+  letter-spacing: 0.88px;
 }
 
 .score_content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: calc(24rem / 16);
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(24rem / 16);
+  width: 100%;
 }
 
-
 .take_round {
-    display: flex;
-    flex-direction: row;
-    gap: calc(8rem / 16);
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: calc(8rem / 16);
+  justify-content: center;
+  align-items: center;
 }
 
 .take_round_x_icon {
-    width: calc(28rem / 16);
-    height: calc(28rem / 16);
-    fill: var(--color_5)
+  width: calc(28rem / 16);
+  height: calc(28rem / 16);
+  fill: var(--color_5);
 }
 
 .take_round_x_text {
-    color: var(--color_5);
-    font-size: calc(24rem / 16);
-    font-weight: bold;
-    letter-spacing: 1.5px;
+  color: var(--color_5);
+  font-size: calc(24rem / 16);
+  font-weight: bold;
+  letter-spacing: 1.5px;
 }
 
-
 .take_round_o_icon {
-    width: calc(30rem / 16);
-    height: calc(30rem / 16);
-    fill: var(--color_7)
+  width: calc(30rem / 16);
+  height: calc(30rem / 16);
+  fill: var(--color_7);
 }
 
 .take_round_o_text {
-    color: var(--color_7);
-    font-size: calc(24rem / 16);
-    font-weight: bold;
-    letter-spacing: 1.5px;
+  color: var(--color_7);
+  font-size: calc(24rem / 16);
+  font-weight: bold;
+  letter-spacing: 1.5px;
 }
 
 .take_round_ties_text {
-    color: var(--color_3);
-    font-size: calc(24rem / 16);
-    font-weight: bold;
-    letter-spacing: 1.5px;
+  color: var(--color_3);
+  font-size: calc(24rem / 16);
+  font-weight: bold;
+  letter-spacing: 1.5px;
 }
 
 .restart_buttons {
-    display: flex;
-    flex-direction: row;
-    gap: calc(16rem / 16);
-    width: 100%;
-    padding: 0 calc(15rem / 16);
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: calc(16rem / 16);
+  width: 100%;
+  padding: 0 calc(15rem / 16);
+  justify-content: center;
+  align-items: center;
 }
 
 .restart_buttons_cpu_ties {
-    display: flex;
-    flex-direction: row;
-    gap: calc(16rem / 16);
-    width: 100%;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: calc(16rem / 16);
+  width: 100%;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
 }
 
 .restart_button_one_cpu {
-    width: 40%;
+  width: 40%;
 }
 
 .restart_button_two_cpu {
-    width: 60%;
+  width: 60%;
 }
 
 .restart_button_one_cpu_ties {
-    width: 50%
+  width: 50%;
 }
 
 .restart_button_two_cpu_ties {
-    width: 50%
+  width: 50%;
 }
 
 .restart_button_one {
-    width: 40%;
+  width: 40%;
 }
 
 .restart_button_two {
-    width: 60%;
+  width: 60%;
+}
+
+@media (orientation: landscape) and (min-width: 320px) and (max-width: 767px) {
+  .restart_buttons {
+    padding: 0;
+  }
+  .restart_button_one_cpu {
+    width: auto;
+  }
+
+  .restart_button_two_cpu {
+    width: auto;
+  }
+
+  .restart_button_one_cpu_ties {
+    width: auto;
+  }
+
+  .restart_button_two_cpu_ties {
+    width: auto;
+  }
+
+  .restart_button_one {
+    width: auto;
+  }
+
+  .restart_button_two {
+    width: auto;
+  }
 }
 
 @media (min-width: 768px) {
-    .body_text {
-        font-size: calc(16rem / 16);
-        letter-spacing: 1px;
-    }
+  .body_text {
+    font-size: calc(16rem / 16);
+    letter-spacing: 1px;
+  }
 
-    .take_round_x_icon {
-        width: calc(64rem / 16);
-        height: calc(64rem / 16);
-    }
+  .take_round_x_icon {
+    width: calc(64rem / 16);
+    height: calc(64rem / 16);
+  }
 
-    .take_round_o_icon {
-        width: calc(64rem / 16);
-        height: calc(64rem / 16);
-    }
+  .take_round_o_icon {
+    width: calc(64rem / 16);
+    height: calc(64rem / 16);
+  }
 
-    .take_round_x_text {
-        font-size: calc(40rem / 16);
-        letter-spacing: 2.5px;
-    }
+  .take_round_x_text {
+    font-size: calc(40rem / 16);
+    letter-spacing: 2.5px;
+  }
 
-    .take_round_o_text {
-        font-size: calc(40rem / 16);
-        letter-spacing: 2.5px;
-    }
+  .take_round_o_text {
+    font-size: calc(40rem / 16);
+    letter-spacing: 2.5px;
+  }
 
-    .take_round_ties_text {
-        font-size: calc(40rem / 16);
-        letter-spacing: 2.5px;
-    }
+  .take_round_ties_text {
+    font-size: calc(40rem / 16);
+    letter-spacing: 2.5px;
+  }
 
-    .restart_button_one {
-        width: calc(76rem / 16);
-    }
+  .restart_button_one {
+    width: calc(76rem / 16);
+  }
 
-    .restart_button_two {
-        width: calc(146rem / 16);
-    }
+  .restart_button_two {
+    width: calc(146rem / 16);
+  }
 
-    .restart_button_one_cpu {
-        width: calc(139rem / 16);
-    }
+  .restart_button_one_cpu {
+    width: calc(139rem / 16);
+  }
 
-    .restart_button_two_cpu {
-        width: calc(139rem / 16);
-    }
+  .restart_button_two_cpu {
+    width: calc(139rem / 16);
+  }
 
-    .restart_button_one_cpu_ties {
-        width: calc(139rem / 16);
+  .restart_button_one_cpu_ties {
+    width: calc(139rem / 16);
+  }
 
-    }
-
-    .restart_button_two_cpu_ties {
-        width: calc(151rem / 16);
-    }
-}
-
-@media (min-width: 1440px) {
+  .restart_button_two_cpu_ties {
+    width: calc(151rem / 16);
+  }
 }

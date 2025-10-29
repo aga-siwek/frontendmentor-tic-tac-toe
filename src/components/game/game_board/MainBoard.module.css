@@ -1,6 +1,12 @@
 .main_board_conteiner {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: calc(20rem/16)
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: calc(20rem / 16);
+}
+
+@media (orientation: landscape) and (min-width: 320px) and (max-width: 767px) {
+  .main_board_conteiner {
+    gap: calc(12rem / 16);
+  }
 }

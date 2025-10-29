@@ -1,19 +1,20 @@
-import styles from "./ButtonPrimary.module.css"
+import styles from "./ButtonPrimary.module.css";
 
-function ButtonPrimary({text = "CLICK ME", color = "blue", onClick = null}) {
+function ButtonPrimary({ text = "CLICK ME", color = "blue", onClick = null }) {
+  const colorPicker = () => {
+    return styles[color];
+  };
 
-    const colorPicker = () => {
-        return styles[color]
-    }
-
-    return (
-        <button className={`
+  return (
+    <button
+      className={`
         ${styles.button_container} 
         ${colorPicker()}`}
-                onClick={(e) => onClick(e)}>
-            {text}
-        </button>
-    )
+      onClick={(e) => onClick(e)}
+    >
+      {text}
+    </button>
+  );
 }
 
-export default ButtonPrimary
+export default ButtonPrimary;

@@ -1,3 +1,3 @@
 export function checkIsFullBoard(board) {
-    return !board.flat().includes(null)
+  return !board.flat().includes(null);
 }
