@@ -69,19 +69,6 @@
   display: none;
 }
 
-@media (orientation: landscape) and (min-width: 320px) and (max-width: 767px) {
-  .main_board_file_conteiner {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color_2);
-    padding: calc(10rem / 16) calc(8rem / 16);
-    border-bottom: 8px solid var(--color_12);
-    border-radius: 10px;
-    cursor: pointer;
-  }
-}
 
 @media (min-width: 768px) {
   .main_board_file_conteiner {

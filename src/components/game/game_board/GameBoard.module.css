@@ -18,19 +18,20 @@
   width: 100%;
 }
 
-@media (orientation: landscape) and (min-width: 320px) and (max-width: 767px) {
-  .game_container {
-    gap: calc(16rem / 16);
-    padding-top: 0;
-  }
-  .game_content {
-    gap: calc(8rem / 16);
-  }
-}
+/*@media (orientation: landscape) and (min-width: 320px) and (max-width: 767px) {*/
+/*  .game_container {*/
+/*    gap: calc(16rem / 16);*/
+/*    padding-top: 0;*/
+/*  }*/
+/*  .game_content {*/
+/*    gap: calc(8rem / 16);*/
+/*  }*/
+/*}*/
 
 @media (min-width: 768px) {
   .game_container {
     width: calc(460rem / 16);
     gap: calc(20rem / 16);
+    padding-top: 0;
   }
 }

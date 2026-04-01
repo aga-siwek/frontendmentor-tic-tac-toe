@@ -20,3 +20,10 @@
   width: calc(16rem / 16);
   height: calc(16rem / 16);
 }
+
+@media (min-width: 768px) {
+  .button_container {
+    width: calc(50rem / 16);
+    height: calc(42rem / 16);
+  }
+}

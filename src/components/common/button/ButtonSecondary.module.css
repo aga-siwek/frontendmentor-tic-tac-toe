@@ -11,6 +11,7 @@
   max-width: calc(198rem / 16);
   border: 0;
   cursor: pointer;
+  color: var(--color_1);
 }
 
 .yellow {
